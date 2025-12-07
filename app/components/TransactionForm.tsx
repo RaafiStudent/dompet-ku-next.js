@@ -14,31 +14,51 @@ export default function TransactionForm() {
           formRef.current?.reset();
         }}
         ref={formRef}
-        className="flex flex-col gap-4 md:flex-row"
+        // PERBAIKAN DISINI: Hapus 'md:flex-row' agar form selalu vertikal (ke bawah)
+        className="flex flex-col gap-4" 
       >
-        <input
-          name="title"
-          type="text"
-          placeholder="Keterangan (cth: Gaji, Makan)"
-          required
-          className="flex-1 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-        />
-        <input
-          name="amount"
-          type="number"
-          placeholder="Rp Jumlah"
-          required
-          className="w-full md:w-48 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-        />
-        <select name="type" className="p-3 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none">
-          <option value="INCOME">Pemasukan (+)</option>
-          <option value="EXPENSE">Pengeluaran (-)</option>
-        </select>
+        {/* Input Keterangan */}
+        <div className="flex flex-col gap-1">
+           <label className="text-xs font-semibold text-gray-500 uppercase">Keterangan</label>
+           <input
+             name="title"
+             type="text"
+             placeholder="Contoh: Gaji, Makan Siang"
+             required
+             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition"
+           />
+        </div>
+
+        {/* Input Jumlah */}
+        <div className="flex flex-col gap-1">
+           <label className="text-xs font-semibold text-gray-500 uppercase">Nominal (Rp)</label>
+           <input
+             name="amount"
+             type="number"
+             placeholder="0"
+             required
+             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition"
+           />
+        </div>
+
+        {/* Pilihan Tipe (Pemasukan/Pengeluaran) */}
+        <div className="flex flex-col gap-1">
+           <label className="text-xs font-semibold text-gray-500 uppercase">Tipe Transaksi</label>
+           <select 
+             name="type" 
+             className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer"
+           >
+             <option value="INCOME">💰 Pemasukan (+)</option>
+             <option value="EXPENSE">💸 Pengeluaran (-)</option>
+           </select>
+        </div>
+
+        {/* Tombol Simpan */}
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition shadow-md"
+          className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold transition shadow-md hover:shadow-lg active:scale-95"
         >
-          Simpan
+          + Simpan Transaksi
         </button>
       </form>
     </div>
